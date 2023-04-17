@@ -3,13 +3,17 @@ import { fetchTopReviews } from "../api";
 
 const Homepage = () => {
   const [topReviews, setTopReviews] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     fetchTopReviews().then((data) => {
       setTopReviews(data);
+      setIsLoading(false);
     });
   }, [topReviews]);
 
-  return (
+  return isLoading ? (
+    <p>is loading...</p>
+  ) : (
     <section className="homepage">
       <h2 id="welcome-title">Welcome</h2>
       <p id="welcome-text">

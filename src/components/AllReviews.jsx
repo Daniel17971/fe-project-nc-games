@@ -6,11 +6,17 @@ const AllReview = () => {
   const [page, setPage] = useState("1");
   const [next, setNext] = useState("");
   const [previous, setPrevious] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     fetchReviews(page).then((data) => {
       setAllReviews(data.results);
-      setNext(data.next.page);
-      setPrevious(data.previous.page);
+      setIsLoading(false);
+      if (data.hasOwnProperty("next")) {
+        setNext(data.next.page);
+      }
+      if (data.hasOwnProperty("previous")) {
+        setPrevious(data.previous.page);
+      }
     });
   }, [page]);
   const handleClick = (event) => {
@@ -21,7 +27,9 @@ const AllReview = () => {
       setPage(previous);
     }
   };
-  return (
+  return isLoading ? (
+    <p>is loading ...</p>
+  ) : (
     <section className="reviews">
       <main>
         <h2>All reviews</h2>
