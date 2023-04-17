@@ -1,38 +1,96 @@
-.App {
+* {
   text-align: center;
+  box-sizing: border-box;
+  margin: 0;
+  border: 0;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* for the Header and nav bar */
+header {
+  grid-template-columns: auto auto;
+  grid-template-rows: auto;
+  display: grid;
+  padding: 2rem;
+  background-color: #810bc6;
+  margin-bottom: 1rem;
+  border-radius: 10px;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.header {
+  background-color: #810bc6;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+a:hover {
+  color: white;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+a {
+  color: white;
+  text-decoration: none;
+  margin: 3vh;
+}
+
+.nav-bar {
+  color: white;
+}
+
+ul {
+  list-style-type: none;
+}
+
+/* For the homepage */
+.homepage {
+  display: grid;
+  grid-template-columns: auto 50rem;
+  grid-template-rows: 5rem auto auto;
+}
+
+#welcome-title {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+#welcome-text {
+  grid-column-start: 1;
+  grid-column-end: 1;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+.highlighted-reviews {
+  grid-column-start: 2;
+  grid-column-end: 2;
+  grid-row-start: 3;
+  grid-row-end: 3;
+}
+
+.highlighted-review {
+  background-color: lightblue;
+  margin: 3rem;
+  border-radius: 100%;
+  padding: 2rem;
+  color: red;
+}
+
+.highlighted-container {
+  color: white;
+  background-color: blue;
+  border-radius: 10px;
+}
+
+/* all images */
+img {
+  height: 8rem;
+  width: 8rem;
+}
+
+/* All reviews */
+
+.all-reviews-review {
+  background-color: blue;
+  color: white;
+  border-radius: 5%;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  margin-right: 30vw;
+  margin-left: 30vw;
 }
