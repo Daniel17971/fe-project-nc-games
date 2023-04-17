@@ -17,6 +17,12 @@ const AllReview = () => {
       if (data.hasOwnProperty("previous")) {
         setPrevious(data.previous.page);
       }
+      if (!data.hasOwnProperty("next")) {
+        setNext("");
+      }
+      if (!data.hasOwnProperty("previous")) {
+        setPrevious("");
+      }
     });
   }, [page]);
   const handleClick = (event) => {
@@ -27,6 +33,7 @@ const AllReview = () => {
       setPage(previous);
     }
   };
+
   return isLoading ? (
     <p>is loading ...</p>
   ) : (
@@ -48,13 +55,21 @@ const AllReview = () => {
         </ul>
       </main>
       <nav>
-        <button onClick={handleClick} value="">
-          previous
-        </button>
+        {previous ? (
+          <button onClick={handleClick} value="">
+            previous
+          </button>
+        ) : (
+          <div></div>
+        )}
         {page}
-        <button onClick={handleClick} value="next">
-          next
-        </button>
+        {next ? (
+          <button onClick={handleClick} value="next">
+            next
+          </button>
+        ) : (
+          <div></div>
+        )}
       </nav>
     </section>
   );

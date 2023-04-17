@@ -12,7 +12,7 @@ header {
   padding: 2rem;
   background-color: #810bc6;
   margin-bottom: 1rem;
-  border-radius: 5%;
+  border-radius: 10px;
 }
 .header {
   background-color: #810bc6;
@@ -74,7 +74,7 @@ ul {
 .highlighted-container {
   color: white;
   background-color: blue;
-  border-radius: 5%;
+  border-radius: 10px;
 }
 
 /* all images */
