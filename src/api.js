@@ -13,3 +13,9 @@ export const fetchReviews = (page) => {
     return response.data.reviews;
   });
 };
+
+export const fetchReview = (review_id) => {
+  return gamesApi.get(`/reviews/${review_id}`).then((response) => {
+    return response.data.review;
+  });
+};

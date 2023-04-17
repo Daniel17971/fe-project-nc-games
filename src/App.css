@@ -94,3 +94,78 @@ img {
   margin-right: 30vw;
   margin-left: 30vw;
 }
+
+/* REview */
+.review-container {
+  display: grid;
+  grid-template-columns: auto 20vw auto;
+  grid-template-rows: auto auto auto auto auto auto;
+  margin: 2rem;
+}
+
+#review-image {
+  width: 40vw;
+  height: 40vh;
+  border-radius: 10px;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  margin: 1rem;
+}
+
+#review-body {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 2;
+  grid-row-end: 2;
+  background-color: crimson;
+  color: white;
+  padding: 1rem;
+  border-radius: 0px 0px 10px 10px;
+}
+
+#review-title {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 1;
+  grid-row-end: 1;
+  background-color: crimson;
+  color: white;
+  padding: 1rem;
+  border-radius: 10px 10px 0px 0px;
+}
+#review-owner {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 4;
+  margin: 2rem;
+  padding: 1rem;
+  margin-left: 15rem;
+  margin-right: 15rem;
+  background-color: darkred;
+  border-radius: 10px;
+}
+#review-votes {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 5;
+  margin: 1rem;
+  background-color: gold;
+  color: white;
+  margin-left: 40rem;
+  margin-right: 40rem;
+  padding: 2rem;
+  border-radius: 10px;
+}
+#review-category {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  grid-row-start: 3;
+  margin: 2rem;
+  padding: 1rem;
+  margin-left: 15rem;
+  margin-right: 15rem;
+  background-color: darkred;
+  border-radius: 10px;
+}

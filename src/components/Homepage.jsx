@@ -17,12 +17,13 @@ const Homepage = () => {
     <section className="homepage">
       <h2 id="welcome-title">Welcome</h2>
       <p id="welcome-text">
-        Welcome to Super Cool game reviews, bringing only the highest quality
-        review content on the most obscure set of games you've ever heard of.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium,
-        illum velit iure nisi eos illo voluptatem nesciunt, sunt assumenda
-        sapiente doloribus obcaecati ad sed doloremque rerum quos rem recusandae
-        non!
+        Welcome to Super Cool game reviews, Lorem ipsum dolor sit amet,
+        consectetur adipisicing elit. Earum id architecto expedita illo quae
+        ipsa. Nobis quae recusandae fugit! Delectus expedita distinctio, aut
+        deserunt esse obcaecati beatae suscipit alias harum. Lorem ipsum dolor
+        sit amet, consectetur adipisicing elit. Laudantium, illum velit iure
+        nisi eos illo voluptatem nesciunt, sunt assumenda sapiente doloribus
+        obcaecati ad sed doloremque rerum quos rem recusandae non!
       </p>
       <div className="highlighted-container">
         <h3>Highest voted Reviews</h3>
