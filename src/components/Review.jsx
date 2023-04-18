@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchReview, updateReviewVotes } from "../api";
 import Comments from "./Comments";
-
+import { Link } from "react-router-dom";
 const Review = () => {
   const review_id = useParams().review_id;
   const [review, setReview] = useState({});
@@ -10,7 +10,7 @@ const Review = () => {
   const [votes, setVotes] = useState("");
   const [err, setErr] = useState(null);
   const [hasVoted, setHasVoted] = useState(true);
-  const [inc, setInc] = useState(1);
+  const [inc, setInc] = useState(0);
 
   useEffect(() => {
     setIsLoading(true);
@@ -55,8 +55,12 @@ const Review = () => {
         <button id="review-votes" type="submit" onClick={handleClick}>
           Votes {votes}
         </button>
+        <Link id="post-comment" to={`/reviews/${review_id}/comments`}>
+          Add comment
+        </Link>
         {err ? <p id="review-vote-err">{err}</p> : null}
       </section>
+
       <Comments review_id={review_id} />
     </section>
   );
