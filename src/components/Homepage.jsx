@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 import { fetchTopReviews } from "../api";
-
+import { Link } from "react-router-dom";
 const Homepage = () => {
   const [topReviews, setTopReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
+    setIsLoading(true);
     fetchTopReviews().then((data) => {
       setTopReviews(data);
       setIsLoading(false);
     });
-  }, [topReviews]);
+  }, []);
 
   return isLoading ? (
     <p>is loading...</p>
@@ -30,13 +31,15 @@ const Homepage = () => {
         <ul className="highlighted-reviews">
           {topReviews.map((review) => {
             return (
-              <li key={review.review_id} className="highlighted-review">
-                <h4>{review.title}</h4>
-                <img src={review.review_img_url} alt={review.title} />
-                <p>Category: {review.category}</p>
-                <p>User: {review.owner}</p>
-                <p>Votes: {review.votes}</p>
-              </li>
+              <Link to={`/reviews/${review.review_id}`} key={review.review_id}>
+                <li key={review.review_id} className="highlighted-review">
+                  <h4>{review.title}</h4>
+                  <img src={review.review_img_url} alt={review.title} />
+                  <p>Category: {review.category}</p>
+                  <p>User: {review.owner}</p>
+                  <p>Votes: {review.votes}</p>
+                </li>
+              </Link>
             );
           })}
         </ul>

@@ -139,7 +139,15 @@ img {
   grid-column-start: 1;
   grid-column-end: 4;
   grid-row-start: 4;
-  margin: 2rem;
+  margin: 1rem;
+  padding: 1rem;
+  margin-left: 15rem;
+  margin-right: 15rem;
+  background-color: darkred;
+  border-radius: 10px;
+}
+#review-designer {
+  margin: 1rem;
   padding: 1rem;
   margin-left: 15rem;
   margin-right: 15rem;
@@ -162,7 +170,7 @@ img {
   grid-column-start: 1;
   grid-column-end: 4;
   grid-row-start: 3;
-  margin: 2rem;
+  margin: 1rem;
   padding: 1rem;
   margin-left: 15rem;
   margin-right: 15rem;

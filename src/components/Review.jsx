@@ -21,8 +21,9 @@ const Review = () => {
       <img src={review.review_img_url} alt={review.title} id="review-image" />
       <div id="review-body">
         <p>{review.review_body}</p>
+        <p id="review-owner">Review by {review.owner}</p>
         <p id="review-category">Category : {review.category}</p>
-        <p id="review-owner">Published by {review.owner}</p>
+        <p id="review-designer">Game made by {review.designer}</p>
       </div>
 
       <h2 id="review-title">{review.title}</h2>
