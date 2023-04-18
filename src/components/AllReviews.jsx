@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchReviews } from "../api";
-
+import { Link } from "react-router-dom";
 const AllReview = () => {
   const [allReviews, setAllReviews] = useState([]);
   const [page, setPage] = useState("1");
@@ -8,6 +8,7 @@ const AllReview = () => {
   const [previous, setPrevious] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
+    setIsLoading(true);
     fetchReviews(page).then((data) => {
       setAllReviews(data.results);
       setIsLoading(false);
@@ -43,13 +44,15 @@ const AllReview = () => {
         <ul className="all-reviews">
           {allReviews.map((review) => {
             return (
-              <li key={review.review_id} className="all-reviews-review">
-                <h3>{review.title}</h3>
-                <img src={review.review_img_url} alt={review.title} />
-                <p>Category : {review.category}</p>
-                <p>User : {review.owner}</p>
-                <p>Votes : {review.votes}</p>
-              </li>
+              <Link to={`/reviews/${review.review_id}`} key={review.review_id}>
+                <li key={review.review_id} className="all-reviews-review">
+                  <h3>{review.title}</h3>
+                  <img src={review.review_img_url} alt={review.title} />
+                  <p>Category : {review.category}</p>
+                  <p>User : {review.owner}</p>
+                  <p>Votes : {review.votes}</p>
+                </li>
+              </Link>
             );
           })}
         </ul>

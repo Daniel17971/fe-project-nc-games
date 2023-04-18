@@ -6,6 +6,7 @@ import Homepage from "./components/Homepage";
 // @ts-ignore
 import User from "./components/User";
 import AllReview from "./components/AllReviews";
+import Review from "./components/Review";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/" element={<Homepage />} />
         <Route path="/user" element={<User />} />
         <Route path="/reviews" element={<AllReview />} />
+        <Route path="/reviews/:review_id" element={<Review />} />
       </Routes>
     </div>
   );
