@@ -11,6 +11,7 @@ const Review = () => {
   const [err, setErr] = useState(null);
   const [hasVoted, setHasVoted] = useState(true);
   const [inc, setInc] = useState(1);
+
   useEffect(() => {
     setIsLoading(true);
     fetchReview(review_id).then((data) => {
