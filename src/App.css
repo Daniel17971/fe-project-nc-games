@@ -167,7 +167,14 @@ img {
   margin-right: 40rem;
   padding: 2rem;
   border-radius: 10px;
+  transition-duration: 0.3s;
+  cursor: pointer;
 }
+#review-votes:hover {
+  color: whitesmoke;
+  background-color: darkgoldenrod;
+}
+
 #review-category {
   grid-column-start: 1;
   grid-column-end: 4;
@@ -178,6 +185,10 @@ img {
   margin-right: 15rem;
   background-color: darkred;
   border-radius: 10px;
+}
+
+#review-vote-err {
+  color: red;
 }
 
 /* comment part */
