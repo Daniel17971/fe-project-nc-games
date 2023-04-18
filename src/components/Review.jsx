@@ -1,20 +1,41 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { fetchReview } from "../api";
+import { fetchReview, updateReviewVotes } from "../api";
 import Comments from "./Comments";
 
 const Review = () => {
   const review_id = useParams().review_id;
   const [review, setReview] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-
+  const [votes, setVotes] = useState("");
+  const [err, setErr] = useState(null);
+  const [hasVoted, setHasVoted] = useState(true);
+  const [inc, setInc] = useState(1);
   useEffect(() => {
     setIsLoading(true);
     fetchReview(review_id).then((data) => {
       setReview(data);
+      setVotes(data.votes);
       setIsLoading(false);
     });
   }, [review_id]);
+
+  const handleClick = () => {
+    if (hasVoted) {
+      setInc(1);
+      setHasVoted(false);
+    } else {
+      setInc(-1);
+      setHasVoted(true);
+    }
+    setVotes((currentVote) => currentVote + inc);
+    setErr(null);
+    updateReviewVotes(review_id, inc).catch((err) => {
+      setVotes((currentVote) => currentVote - inc);
+      setErr("sorry theres been an error, please try again");
+    });
+  };
+
   return isLoading ? (
     <p>is loading ...</p>
   ) : (
@@ -30,7 +51,10 @@ const Review = () => {
 
         <h2 id="review-title">{review.title}</h2>
 
-        <p id="review-votes">Votes {review.votes}</p>
+        <button id="review-votes" type="submit" onClick={handleClick}>
+          Votes {votes}
+        </button>
+        {err ? <p id="review-vote-err">{err}</p> : null}
       </section>
       <Comments review_id={review_id} />
     </section>
