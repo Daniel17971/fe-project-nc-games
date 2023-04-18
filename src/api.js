@@ -19,3 +19,11 @@ export const fetchReview = (review_id) => {
     return response.data.review;
   });
 };
+
+export const fetchReviewComments = (review_id, page) => {
+  return gamesApi
+    .get(`/reviews/${review_id}/comments?page=${page}`)
+    .then((response) => {
+      return response.data.comments;
+    });
+};

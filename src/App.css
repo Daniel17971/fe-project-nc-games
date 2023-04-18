@@ -95,7 +95,9 @@ img {
   margin-left: 30vw;
 }
 
-/* REview */
+/* REview and comments*/
+
+/* review part */
 .review-container {
   display: grid;
   grid-template-columns: auto 20vw auto;
@@ -176,4 +178,32 @@ img {
   margin-right: 15rem;
   background-color: darkred;
   border-radius: 10px;
+}
+
+/* comment part */
+.review-comment {
+  background-color: crimson;
+  color: white;
+  margin: 2rem;
+  margin-left: 20rem;
+  margin-right: 20rem;
+  padding: 1rem;
+  border-radius: 10px;
+}
+
+#comment-votes {
+  background-color: gold;
+  padding: 1rem;
+  margin-top: 1rem;
+  margin-left: 20rem;
+  margin-right: 20rem;
+  border-radius: 10px;
+}
+
+#comment-date {
+  background-color: black;
+  margin-top: 1rem;
+  margin-left: 10rem;
+  margin-right: 10rem;
+  border-radius: 5px;
 }
