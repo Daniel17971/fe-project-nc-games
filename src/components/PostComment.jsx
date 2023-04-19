@@ -13,13 +13,11 @@ const PostComment = ({ setCommentsList }) => {
   const { user } = useContext(LoginContext);
 
   useEffect(() => {
-    setErr(null);
-
-    if (Object.keys(newComment).length) {
+    if (Object.keys(newComment).length && newComment.body) {
       postComment(review_id.review_id, newComment)
         .then((data) => {
           setHasPosted(true);
-
+          setErr(null);
           setCommentsList((currentList) => {
             return [...currentList, data];
           });
