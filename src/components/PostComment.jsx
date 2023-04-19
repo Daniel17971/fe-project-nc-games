@@ -27,7 +27,7 @@ const PostComment = ({ setCommentsList }) => {
         .catch((err) => {
           setBody("");
           setNewComment({});
-          setErr("Your not loged in!");
+          setErr("Your not logged in!");
         });
     }
   }, [newComment, review_id.review_id, setCommentsList]);

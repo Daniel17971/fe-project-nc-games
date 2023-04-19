@@ -6,7 +6,7 @@ const User = () => {
   const { setUser, user } = useContext(LoginContext);
   const [newName, setNewName] = useState("");
   const [submitName, setSubmitName] = useState("");
-  const [isLogedIn, setIsLogedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [err, setErr] = useState(null);
   useEffect(() => {
     if (submitName) {
@@ -14,7 +14,7 @@ const User = () => {
         .then((data) => {
           setUser(data.username);
           setErr(null);
-          setIsLogedIn(false);
+          setIsLoggedIn(false);
         })
         .catch((err) => {
           setErr(true);
@@ -29,7 +29,7 @@ const User = () => {
 
     setSubmitName(newName);
   };
-  return isLogedIn ? (
+  return isLoggedIn ? (
     <section>
       <h2>User page</h2>
       <form id="login-form" onSubmit={handleSubmit}>
