@@ -3,9 +3,10 @@ import { LoginContext } from "../contexts/Login";
 import { fetchUser } from "../api";
 
 const User = () => {
-  const { setUser } = useContext(LoginContext);
+  const { setUser, user } = useContext(LoginContext);
   const [newName, setNewName] = useState("");
   const [submitName, setSubmitName] = useState("");
+  const [isLogedIn, setIsLogedIn] = useState(true);
   const [err, setErr] = useState(null);
   useEffect(() => {
     if (submitName) {
@@ -13,6 +14,7 @@ const User = () => {
         .then((data) => {
           setUser(data.username);
           setErr(null);
+          setIsLogedIn(false);
         })
         .catch((err) => {
           setErr(true);
@@ -27,7 +29,7 @@ const User = () => {
 
     setSubmitName(newName);
   };
-  return (
+  return isLogedIn ? (
     <section>
       <h2>User page</h2>
       <form id="login-form" onSubmit={handleSubmit}>
@@ -43,6 +45,8 @@ const User = () => {
       </form>
       {err ? <p>sorry that name doesnt exsist</p> : null}
     </section>
+  ) : (
+    <p>Welcome back {user}</p>
   );
 };
 

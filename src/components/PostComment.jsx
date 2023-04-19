@@ -18,14 +18,15 @@ const PostComment = ({ setCommentsList }) => {
         .then((data) => {
           setHasPosted(true);
           setErr(null);
-          setCommentsList((currentList) => {
-            return [...currentList, data];
-          });
           setBody("");
           setNewComment({});
+          setCommentsList((currentList) => {
+            return [data, ...currentList];
+          });
         })
         .catch((err) => {
-          console.log(err);
+          setBody("");
+          setNewComment({});
           setErr("Your not loged in!");
         });
     }
@@ -49,6 +50,7 @@ const PostComment = ({ setCommentsList }) => {
           id="textarea-input"
           rows="4"
           cols="50"
+          value={body}
           onChange={(event) => {
             setBody(event.target.value);
           }}
