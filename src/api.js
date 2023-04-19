@@ -43,3 +43,9 @@ export const postComment = (review_id, comment) => {
       return response.data.comment;
     });
 };
+
+export const fetchUser = (username) => {
+  return gamesApi.get(`/users/${username}`).then((response) => {
+    return response.data.user;
+  });
+};

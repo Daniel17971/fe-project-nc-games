@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchReview, updateReviewVotes } from "../api";
 import Comments from "./Comments";
-import { Link } from "react-router-dom";
+
+import PostComment from "./PostComment.jsx";
 const Review = () => {
   const review_id = useParams().review_id;
   const [review, setReview] = useState({});
@@ -11,6 +12,11 @@ const Review = () => {
   const [err, setErr] = useState(null);
   const [hasVoted, setHasVoted] = useState(true);
   const [inc, setInc] = useState(0);
+  const [clickedComment, setClickedComment] = useState(true);
+  const [commentsList, setCommmentsList] = useState([]);
+  const addComment = () => {
+    setClickedComment(false);
+  };
 
   useEffect(() => {
     setIsLoading(true);
@@ -55,13 +61,22 @@ const Review = () => {
         <button id="review-votes" type="submit" onClick={handleClick}>
           Votes {votes}
         </button>
-        <Link id="post-comment" to={`/reviews/${review_id}/comments`}>
-          Add comment
-        </Link>
+
         {err ? <p id="review-vote-err">{err}</p> : null}
       </section>
 
-      <Comments review_id={review_id} />
+      <Comments
+        setCommmentsList={setCommmentsList}
+        commentsList={commentsList}
+        review_id={review_id}
+      />
+      {clickedComment ? (
+        <p id="post-comment" onClick={addComment}>
+          Add comment
+        </p>
+      ) : (
+        <PostComment setCommmentsList={setCommmentsList} />
+      )}
     </section>
   );
 };

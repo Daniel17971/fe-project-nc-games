@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchReviewComments } from "../api";
 
-const Comments = ({ review_id }) => {
-  const [commentsList, setCommmentsList] = useState([]);
+const Comments = ({ review_id, commentsList, setCommmentsList }) => {
   const [page, setPage] = useState("1");
   const [next, setNext] = useState("");
   const [previous, setPrevious] = useState("");
@@ -30,7 +29,7 @@ const Comments = ({ review_id }) => {
         setPrevious("");
       }
     });
-  }, [page, review_id]);
+  }, [page, review_id, setCommmentsList]);
   const handleClick = (event) => {
     event.preventDefault();
     if (event.target.value) {
