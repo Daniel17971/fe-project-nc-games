@@ -13,7 +13,7 @@ const Review = () => {
   const [hasVoted, setHasVoted] = useState(true);
   const [inc, setInc] = useState(0);
   const [clickedComment, setClickedComment] = useState(true);
-  const [commentsList, setCommmentsList] = useState([]);
+  const [commentsList, setCommentsList] = useState([]);
   const addComment = () => {
     setClickedComment(false);
   };
@@ -66,7 +66,7 @@ const Review = () => {
       </section>
 
       <Comments
-        setCommmentsList={setCommmentsList}
+        setCommentsList={setCommentsList}
         commentsList={commentsList}
         review_id={review_id}
       />
@@ -75,7 +75,7 @@ const Review = () => {
           Add comment
         </p>
       ) : (
-        <PostComment setCommmentsList={setCommmentsList} />
+        <PostComment setCommentsList={setCommentsList} />
       )}
     </section>
   );

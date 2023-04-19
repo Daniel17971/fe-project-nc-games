@@ -21,9 +21,11 @@ const PostComment = ({ setCommentsList }) => {
           setCommentsList((currentList) => {
             return [...currentList, data];
           });
+          setBody("");
+          setNewComment({});
         })
         .catch((err) => {
-          console.log("here");
+          console.log(err);
           setErr("Your not loged in!");
         });
     }
