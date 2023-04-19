@@ -218,3 +218,33 @@ img {
   margin-right: 10rem;
   border-radius: 5px;
 }
+/* posting comment */
+#post-comment {
+  color: black;
+}
+
+.comment-form {
+  background-color: lightcoral;
+  border-radius: 5px;
+  margin-left: 25rem;
+  margin-right: 25rem;
+  padding: 2rem;
+}
+
+#username-input {
+  margin: 2rem;
+}
+#textarea-input {
+  margin: 2rem;
+}
+
+#post-comment {
+  background-color: darkgreen;
+  color: white;
+  border-radius: 5px;
+  padding: 1rem;
+}
+
+#login-form {
+  background-color: coral;
+}

@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { fetchReviewComments } from "../api";
 
-const Comments = ({ review_id }) => {
-  const [commentsList, setCommmentsList] = useState([]);
+const Comments = ({ review_id, commentsList, setCommentsList }) => {
   const [page, setPage] = useState("1");
   const [next, setNext] = useState("");
   const [previous, setPrevious] = useState("");
@@ -12,9 +11,9 @@ const Comments = ({ review_id }) => {
     fetchReviewComments(review_id, page).then((data) => {
       setIsLoading(false);
       if (data.results.length) {
-        setCommmentsList(data.results);
+        setCommentsList(data.results);
       } else {
-        setCommmentsList(0);
+        setCommentsList(0);
       }
 
       if (data.hasOwnProperty("next")) {
@@ -30,7 +29,7 @@ const Comments = ({ review_id }) => {
         setPrevious("");
       }
     });
-  }, [page, review_id]);
+  }, [page, review_id, setCommentsList]);
   const handleClick = (event) => {
     event.preventDefault();
     if (event.target.value) {
