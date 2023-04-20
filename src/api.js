@@ -58,7 +58,9 @@ export const fetchCategories = () => {
 
 export const fetchReviewsCategory = (page, category) => {
   return gamesApi
-    .get(`/reviews?page=${page}&category=${category}`)
+    .get(`/reviews`, {
+      params: { page: page, category: category },
+    })
     .then((response) => {
       return response.data.reviews;
     });

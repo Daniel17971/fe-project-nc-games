@@ -5,18 +5,11 @@
   border: 0;
 }
 /* for the Header and nav bar */
-header {
-  grid-template-columns: auto auto;
-  grid-template-rows: auto;
-  display: grid;
-  padding: 2rem;
-  background-color: #810bc6;
-  margin-bottom: 1rem;
-  border-radius: 10px;
-}
+
 .header {
-  background-color: #810bc6;
   color: white;
+  padding: 1rem;
+  background-color: #810bc6;
 }
 
 a:hover {
@@ -26,10 +19,14 @@ a:hover {
 a {
   color: white;
   text-decoration: none;
-  margin: 3vh;
+  margin-left: 1vw;
+  margin-right: 1vw;
 }
 
 .nav-bar {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: #810bc6;
   color: white;
 }
 
@@ -95,39 +92,24 @@ img {
   margin-left: 20vw;
 }
 
-.reviews {
-  display: grid;
-  grid-template-columns: auto 20vw;
-  grid-template-rows: 5vh auto 5vh;
-}
-
-.all-reviews {
-  grid-column-start: 1;
-  grid-column-end: 1;
-  grid-row-start: 1;
-  grid-row-end: 2;
-}
-
-#all-reviews-nav {
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 3;
-  grid-row-end: 4;
-}
-
 .category-sidebar {
-  grid-column-start: 2;
-  grid-column-end: 3;
+  height: 100%;
+  width: 10rem;
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding-top: 4rem;
 
-  padding: 2rem;
-}
-
-#category-list {
   background-color: crimson;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+}
+.category-sidebar h3 {
+  color: white;
+}
+#category-list {
+  padding: 1rem;
+
+  background-color: crimson;
   color: antiquewhite;
-  padding: 2rem;
 }
 /* REview and comments*/
 

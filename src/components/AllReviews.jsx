@@ -44,7 +44,7 @@ const AllReview = () => {
   ) : (
     <section className="reviews">
       <section className="category-sidebar">
-        <ul>
+        <ul className="category-list">
           <h3>Categories</h3>
           {categoryList.map((category) => {
             return (
