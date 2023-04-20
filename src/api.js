@@ -8,10 +8,12 @@ export const fetchTopReviews = () => {
   });
 };
 
-export const fetchReviews = (page) => {
-  return gamesApi.get(`/reviews?page=${page}`).then((response) => {
-    return response.data.reviews;
-  });
+export const fetchReviews = (page, query) => {
+  return gamesApi
+    .get(`/reviews`, { params: { page: page, sort_by: query } })
+    .then((response) => {
+      return response.data.reviews;
+    });
 };
 
 export const fetchReview = (review_id) => {

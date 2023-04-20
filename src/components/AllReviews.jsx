@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { fetchCategories, fetchReviews } from "../api";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 const AllReview = () => {
   const [allReviews, setAllReviews] = useState([]);
   const [page, setPage] = useState("1");
@@ -8,9 +8,12 @@ const AllReview = () => {
   const [previous, setPrevious] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [categoryList, setCategoryList] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get("sort_by");
+
   useEffect(() => {
     setIsLoading(true);
-    fetchReviews(page).then((data) => {
+    fetchReviews(page, query).then((data) => {
       setAllReviews(data.results);
       setIsLoading(false);
       if (data.hasOwnProperty("next")) {
@@ -29,7 +32,7 @@ const AllReview = () => {
     fetchCategories().then((data) => {
       setCategoryList(data);
     });
-  }, [page]);
+  }, [page, query]);
   const handleClick = (event) => {
     event.preventDefault();
     if (event.target.value) {
@@ -39,6 +42,11 @@ const AllReview = () => {
     }
   };
 
+  const handleChange = (event) => {
+    setSearchParams((currentParams) => {
+      return { sort_by: event.target.value };
+    });
+  };
   return isLoading ? (
     <p>is loading ...</p>
   ) : (
@@ -62,6 +70,15 @@ const AllReview = () => {
       </section>
       <main>
         <h2 id="all-reviews-title">All reviews</h2>
+
+        <label htmlFor="sort-by">sort by </label>
+        <select onChange={handleChange} id="sort-by" value={query}>
+          <option value="title">Title</option>
+          <option value="votes">Votes</option>
+          <option value="created_at">Date</option>
+          <option value="owner">Username</option>
+        </select>
+
         <ul className="all-reviews">
           {allReviews.map((review) => {
             return (
