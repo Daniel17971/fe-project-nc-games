@@ -49,3 +49,19 @@ export const fetchUser = (username) => {
     return response.data.user;
   });
 };
+
+export const fetchCategories = () => {
+  return gamesApi.get(`/categories`).then((response) => {
+    return response.data.categories;
+  });
+};
+
+export const fetchReviewsCategory = (page, category) => {
+  return gamesApi
+    .get(`/reviews`, {
+      params: { page: page, category: category },
+    })
+    .then((response) => {
+      return response.data.reviews;
+    });
+};

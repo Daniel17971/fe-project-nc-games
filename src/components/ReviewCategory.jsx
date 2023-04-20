@@ -1,16 +1,17 @@
+import { useParams } from "react-router-dom";
+import { fetchReviewsCategory } from "../api";
 import { useEffect, useState } from "react";
-import { fetchCategories, fetchReviews } from "../api";
 import { Link } from "react-router-dom";
-const AllReview = () => {
+const ReviewCategory = () => {
+  const category = useParams().category;
   const [allReviews, setAllReviews] = useState([]);
   const [page, setPage] = useState("1");
   const [next, setNext] = useState("");
   const [previous, setPrevious] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-  const [categoryList, setCategoryList] = useState([]);
   useEffect(() => {
     setIsLoading(true);
-    fetchReviews(page).then((data) => {
+    fetchReviewsCategory(page, category).then((data) => {
       setAllReviews(data.results);
       setIsLoading(false);
       if (data.hasOwnProperty("next")) {
@@ -26,10 +27,7 @@ const AllReview = () => {
         setPrevious("");
       }
     });
-    fetchCategories().then((data) => {
-      setCategoryList(data);
-    });
-  }, [page]);
+  }, [page, category]);
   const handleClick = (event) => {
     event.preventDefault();
     if (event.target.value) {
@@ -40,28 +38,11 @@ const AllReview = () => {
   };
 
   return isLoading ? (
-    <p>is loading ...</p>
+    <p>... is loading</p>
   ) : (
-    <section className="reviews">
-      <section className="category-sidebar">
-        <ul className="category-list">
-          <h3>Categories</h3>
-          {categoryList.map((category) => {
-            return (
-              <Link
-                to={`/reviews/category/${category.slug}`}
-                key={category.slug}
-              >
-                <li key={category.slug} id="category-list">
-                  {category.slug}
-                </li>
-              </Link>
-            );
-          })}
-        </ul>
-      </section>
+    <section>
       <main>
-        <h2 id="all-reviews-title">All reviews</h2>
+        <h2 id="all-reviews-title">All {category} reviews</h2>
         <ul className="all-reviews">
           {allReviews.map((review) => {
             return (
@@ -69,7 +50,6 @@ const AllReview = () => {
                 <li key={review.review_id} className="all-reviews-review">
                   <h3>{review.title}</h3>
                   <img src={review.review_img_url} alt={review.title} />
-                  <p>Category : {review.category}</p>
                   <p>User : {review.owner}</p>
                   <p>Votes : {review.votes}</p>
                 </li>
@@ -98,4 +78,5 @@ const AllReview = () => {
     </section>
   );
 };
-export default AllReview;
+
+export default ReviewCategory;

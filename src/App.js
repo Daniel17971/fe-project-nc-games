@@ -7,6 +7,7 @@ import Homepage from "./components/Homepage";
 import User from "./components/User";
 import AllReview from "./components/AllReviews";
 import Review from "./components/Review";
+import ReviewCategory from "./components/ReviewCategory";
 
 function App() {
   return (
@@ -17,6 +18,10 @@ function App() {
         <Route path="/user" element={<User />} />
         <Route path="/reviews" element={<AllReview />} />
         <Route path="/reviews/:review_id" element={<Review />} />
+        <Route
+          path="/reviews/category/:category"
+          element={<ReviewCategory />}
+        />
       </Routes>
     </div>
   );
