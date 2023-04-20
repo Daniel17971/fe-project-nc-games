@@ -47,6 +47,19 @@ const AllReview = () => {
       return { sort_by: event.target.value };
     });
   };
+  const handleChangeOrder = (event) => {
+    if (event.target.value === "asc") {
+      setAllReviews((currentReviews) => {
+        return [...currentReviews].reverse();
+      });
+    }
+    if (event.target.value === "desc") {
+      setAllReviews((currentReviews) => {
+        return [...currentReviews].reverse();
+      });
+    }
+  };
+
   return isLoading ? (
     <p>is loading ...</p>
   ) : (
@@ -57,7 +70,7 @@ const AllReview = () => {
           {categoryList.map((category) => {
             return (
               <Link
-                to={`/reviews/category/${category.slug}`}
+                to={`/reviews/category/${category.slug}?sort_by=title`}
                 key={category.slug}
               >
                 <li key={category.slug} id="category-list">
@@ -77,6 +90,11 @@ const AllReview = () => {
           <option value="votes">Votes</option>
           <option value="created_at">Date</option>
           <option value="owner">Username</option>
+        </select>
+        <label htmlFor="order">order </label>
+        <select onChange={handleChangeOrder} id="order">
+          <option value="desc">Desending</option>
+          <option value="asc">Acsending</option>
         </select>
 
         <ul className="all-reviews">

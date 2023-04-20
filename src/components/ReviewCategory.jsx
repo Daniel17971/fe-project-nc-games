@@ -1,5 +1,5 @@
-import { useParams } from "react-router-dom";
-import { fetchReviewsCategory } from "../api";
+import { useParams, useSearchParams } from "react-router-dom";
+import { fetchReviews } from "../api";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 const ReviewCategory = () => {
@@ -9,9 +9,11 @@ const ReviewCategory = () => {
   const [next, setNext] = useState("");
   const [previous, setPrevious] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get("sort_by");
   useEffect(() => {
     setIsLoading(true);
-    fetchReviewsCategory(page, category).then((data) => {
+    fetchReviews(page, query, 1000).then((data) => {
       setAllReviews(data.results);
       setIsLoading(false);
       if (data.hasOwnProperty("next")) {
@@ -27,7 +29,7 @@ const ReviewCategory = () => {
         setPrevious("");
       }
     });
-  }, [page, category]);
+  }, [page, category, query]);
   const handleClick = (event) => {
     event.preventDefault();
     if (event.target.value) {
@@ -36,26 +38,59 @@ const ReviewCategory = () => {
       setPage(previous);
     }
   };
-
+  const handleChange = (event) => {
+    setSearchParams((currentParams) => {
+      return { sort_by: event.target.value };
+    });
+  };
+  const handleChangeOrder = (event) => {
+    if (event.target.value === "asc") {
+      setAllReviews((currentReviews) => {
+        return [...currentReviews].reverse();
+      });
+    }
+    if (event.target.value === "desc") {
+      setAllReviews((currentReviews) => {
+        return [...currentReviews].reverse();
+      });
+    }
+  };
   return isLoading ? (
     <p>... is loading</p>
   ) : (
     <section>
       <main>
         <h2 id="all-reviews-title">All {category} reviews</h2>
+        <label htmlFor="sort-by">sort by </label>
+        <select onChange={handleChange} id="sort-by" value={query}>
+          <option value="title">Title</option>
+          <option value="votes">Votes</option>
+          <option value="created_at">Date</option>
+          <option value="owner">Username</option>
+        </select>
+        <label htmlFor="order">order </label>
+        <select onChange={handleChangeOrder} id="order">
+          <option value="desc">Desending</option>
+          <option value="asc">Acsending</option>
+        </select>
         <ul className="all-reviews">
-          {allReviews.map((review) => {
-            return (
-              <Link to={`/reviews/${review.review_id}`} key={review.review_id}>
-                <li key={review.review_id} className="all-reviews-review">
-                  <h3>{review.title}</h3>
-                  <img src={review.review_img_url} alt={review.title} />
-                  <p>User : {review.owner}</p>
-                  <p>Votes : {review.votes}</p>
-                </li>
-              </Link>
-            );
-          })}
+          {allReviews
+            .filter((review) => review.category === category)
+            .map((review) => {
+              return (
+                <Link
+                  to={`/reviews/${review.review_id}`}
+                  key={review.review_id}
+                >
+                  <li key={review.review_id} className="all-reviews-review">
+                    <h3>{review.title}</h3>
+                    <img src={review.review_img_url} alt={review.title} />
+                    <p>User : {review.owner}</p>
+                    <p>Votes : {review.votes}</p>
+                  </li>
+                </Link>
+              );
+            })}
         </ul>
       </main>
       <nav id="all-reviews-nav">
