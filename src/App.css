@@ -91,10 +91,44 @@ img {
   border-radius: 5%;
   margin-top: 2rem;
   margin-bottom: 2rem;
-  margin-right: 30vw;
-  margin-left: 30vw;
+  margin-right: 20vw;
+  margin-left: 20vw;
 }
 
+.reviews {
+  display: grid;
+  grid-template-columns: auto 20vw;
+  grid-template-rows: 5vh auto 5vh;
+}
+
+.all-reviews {
+  grid-column-start: 1;
+  grid-column-end: 1;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+#all-reviews-nav {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 3;
+  grid-row-end: 4;
+}
+
+.category-sidebar {
+  grid-column-start: 2;
+  grid-column-end: 3;
+
+  padding: 2rem;
+}
+
+#category-list {
+  background-color: crimson;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  color: antiquewhite;
+  padding: 2rem;
+}
 /* REview and comments*/
 
 /* review part */
