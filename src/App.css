@@ -211,9 +211,10 @@ img {
 .review-comment {
   background-color: crimson;
   color: white;
-  margin: 2rem;
-  margin-left: 20rem;
-  margin-right: 20rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  margin-left: 20vw;
+  margin-right: 20vw;
   padding: 1rem;
   border-radius: 10px;
 }
@@ -263,4 +264,17 @@ img {
 
 #login-form {
   background-color: coral;
+}
+
+#delete-comment {
+  transition-duration: 0.3s;
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#delete-comment:hover {
+  color: red;
+  background-color: white;
 }

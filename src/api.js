@@ -80,3 +80,7 @@ export const fetchReviewsCategory = (page, category, sort_by, order, limit) => {
       return response.data.reviews;
     });
 };
+
+export const deleteComment = (comment_id) => {
+  return gamesApi.delete(`/comments/${comment_id}`);
+};

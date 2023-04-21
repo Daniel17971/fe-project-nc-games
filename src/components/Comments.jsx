@@ -1,11 +1,14 @@
-import { useEffect, useState } from "react";
-import { fetchReviewComments } from "../api";
+import { useContext, useEffect, useState } from "react";
+import { deleteComment, fetchReviewComments } from "../api";
+import { LoginContext } from "../contexts/Login";
 
 const Comments = ({ review_id, commentsList, setCommentsList }) => {
   const [page, setPage] = useState("1");
   const [next, setNext] = useState("");
   const [previous, setPrevious] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const { user } = useContext(LoginContext);
   useEffect(() => {
     setIsLoading(true);
     fetchReviewComments(review_id, page).then((data) => {
@@ -38,7 +41,17 @@ const Comments = ({ review_id, commentsList, setCommentsList }) => {
       setPage(previous);
     }
   };
-
+  const handleDelete = (event) => {
+    setIsDeleting(true);
+    deleteComment(event.target.value).then((response) => {
+      setCommentsList((currentComments) => {
+        return currentComments.filter((element) => {
+          return element.comment_id !== +event.target.value;
+        });
+      });
+      setIsDeleting(false);
+    });
+  };
   return isLoading ? (
     <p>... is loading</p>
   ) : (
@@ -55,6 +68,22 @@ const Comments = ({ review_id, commentsList, setCommentsList }) => {
                   posted on {comment.created_at.slice(0, 10)}
                 </p>
                 <p id="comment-votes">votes {comment.votes}</p>
+                {isDeleting ? (
+                  <p>... deleting comment</p>
+                ) : (
+                  <div>
+                    {user === comment.author ? (
+                      <button
+                        id="delete-comment"
+                        type="submit"
+                        onClick={handleDelete}
+                        value={comment.comment_id}
+                      >
+                        Delete
+                      </button>
+                    ) : null}
+                  </div>
+                )}
               </li>
             );
           })}
