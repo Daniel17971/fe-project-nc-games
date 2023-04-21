@@ -84,3 +84,9 @@ export const fetchReviewsCategory = (page, category, sort_by, order, limit) => {
 export const deleteComment = (comment_id) => {
   return gamesApi.delete(`/comments/${comment_id}`);
 };
+
+export const fetchUsers = () => {
+  return gamesApi.get("/users").then((response) => {
+    return response.data.users;
+  });
+};
