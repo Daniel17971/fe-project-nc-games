@@ -1,5 +1,5 @@
 import { useParams, useSearchParams } from "react-router-dom";
-import { fetchReviews } from "../api";
+import { fetchReviewsCategory } from "../api";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 const ReviewCategory = () => {
@@ -11,9 +11,10 @@ const ReviewCategory = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get("sort_by");
+  const order = searchParams.get("order");
   useEffect(() => {
     setIsLoading(true);
-    fetchReviews(page, query, 1000).then((data) => {
+    fetchReviewsCategory(page, category, query, order).then((data) => {
       setAllReviews(data.results);
       setIsLoading(false);
       if (data.hasOwnProperty("next")) {
@@ -29,7 +30,7 @@ const ReviewCategory = () => {
         setPrevious("");
       }
     });
-  }, [page, category, query]);
+  }, [page, category, query, order]);
   const handleClick = (event) => {
     event.preventDefault();
     if (event.target.value) {
@@ -40,21 +41,15 @@ const ReviewCategory = () => {
   };
   const handleChange = (event) => {
     setSearchParams((currentParams) => {
-      return { sort_by: event.target.value };
+      return { order: order, sort_by: event.target.value };
     });
   };
   const handleChangeOrder = (event) => {
-    if (event.target.value === "asc") {
-      setAllReviews((currentReviews) => {
-        return [...currentReviews].reverse();
-      });
-    }
-    if (event.target.value === "desc") {
-      setAllReviews((currentReviews) => {
-        return [...currentReviews].reverse();
-      });
-    }
+    setSearchParams((currentParams) => {
+      return { sort_by: query, order: event.target.value };
+    });
   };
+
   return isLoading ? (
     <p>... is loading</p>
   ) : (

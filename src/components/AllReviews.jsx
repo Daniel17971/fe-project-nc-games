@@ -10,10 +10,10 @@ const AllReview = () => {
   const [categoryList, setCategoryList] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get("sort_by");
-
+  const order = searchParams.get("order");
   useEffect(() => {
     setIsLoading(true);
-    fetchReviews(page, query).then((data) => {
+    fetchReviews(page, query, order).then((data) => {
       setAllReviews(data.results);
       setIsLoading(false);
       if (data.hasOwnProperty("next")) {
@@ -32,7 +32,7 @@ const AllReview = () => {
     fetchCategories().then((data) => {
       setCategoryList(data);
     });
-  }, [page, query]);
+  }, [page, query, order]);
   const handleClick = (event) => {
     event.preventDefault();
     if (event.target.value) {
@@ -44,20 +44,13 @@ const AllReview = () => {
 
   const handleChange = (event) => {
     setSearchParams((currentParams) => {
-      return { sort_by: event.target.value };
+      return { order: order, sort_by: event.target.value };
     });
   };
   const handleChangeOrder = (event) => {
-    if (event.target.value === "asc") {
-      setAllReviews((currentReviews) => {
-        return [...currentReviews].reverse();
-      });
-    }
-    if (event.target.value === "desc") {
-      setAllReviews((currentReviews) => {
-        return [...currentReviews].reverse();
-      });
-    }
+    setSearchParams((currentParams) => {
+      return { sort_by: query, order: event.target.value };
+    });
   };
 
   return isLoading ? (
@@ -70,7 +63,7 @@ const AllReview = () => {
           {categoryList.map((category) => {
             return (
               <Link
-                to={`/reviews/category/${category.slug}?sort_by=title`}
+                to={`/reviews/category/${category.slug}?sort_by=title&order=desc`}
                 key={category.slug}
               >
                 <li key={category.slug} id="category-list">
@@ -92,7 +85,7 @@ const AllReview = () => {
           <option value="owner">Username</option>
         </select>
         <label htmlFor="order">order </label>
-        <select onChange={handleChangeOrder} id="order">
+        <select onChange={handleChangeOrder} id="order" value={order}>
           <option value="desc">Desending</option>
           <option value="asc">Acsending</option>
         </select>

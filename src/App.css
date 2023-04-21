@@ -5,11 +5,18 @@
   border: 0;
 }
 /* for the Header and nav bar */
+header {
+  display: grid;
+  grid-template-columns: auto 15vw;
+  grid-template-rows: auto auto;
+}
 
 .header {
   color: white;
   padding: 1rem;
-  background-color: #810bc6;
+  background-color: black;
+  grid-column-start: 1;
+  grid-column-end: 1;
 }
 
 a:hover {
@@ -22,12 +29,35 @@ a {
   margin-left: 1vw;
   margin-right: 1vw;
 }
+.user-nav {
+  background-color: black;
+  grid-column-start: 2;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+#username-display {
+  grid-column-start: 2;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 2;
+}
 
+#avatar {
+  grid-column-start: 2;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 1;
+  border-radius: 20px;
+  height: 5vh;
+  width: 5vw;
+}
 .nav-bar {
-  margin-bottom: 1rem;
   padding: 1rem;
-  background-color: #810bc6;
+  background-color: black;
   color: white;
+  grid-column-start: 1;
+  grid-column-end: 1;
 }
 
 ul {
@@ -211,9 +241,10 @@ img {
 .review-comment {
   background-color: crimson;
   color: white;
-  margin: 2rem;
-  margin-left: 20rem;
-  margin-right: 20rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  margin-left: 20vw;
+  margin-right: 20vw;
   padding: 1rem;
   border-radius: 10px;
 }
@@ -263,4 +294,17 @@ img {
 
 #login-form {
   background-color: coral;
+}
+
+#delete-comment {
+  transition-duration: 0.3s;
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#delete-comment:hover {
+  color: red;
+  background-color: white;
 }
