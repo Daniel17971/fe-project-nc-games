@@ -8,9 +8,16 @@ export const fetchTopReviews = () => {
   });
 };
 
-export const fetchReviews = (page, query, limit = 10) => {
+export const fetchReviews = (page, query, order, limit) => {
   return gamesApi
-    .get(`/reviews`, { params: { page: page, sort_by: query, limit: limit } })
+    .get(`/reviews`, {
+      params: {
+        page: page,
+        sort_by: query,
+        order: order,
+        limit: limit,
+      },
+    })
     .then((response) => {
       return response.data.reviews;
     });
@@ -58,10 +65,16 @@ export const fetchCategories = () => {
   });
 };
 
-export const fetchReviewsCategory = (page, category) => {
+export const fetchReviewsCategory = (page, category, sort_by, order, limit) => {
   return gamesApi
     .get(`/reviews`, {
-      params: { page: page, category: category },
+      params: {
+        page: page,
+        category: category,
+        sort_by: sort_by,
+        order: order,
+        limit: limit,
+      },
     })
     .then((response) => {
       return response.data.reviews;
